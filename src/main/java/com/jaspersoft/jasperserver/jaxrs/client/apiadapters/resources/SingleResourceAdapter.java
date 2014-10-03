@@ -218,6 +218,15 @@ public class SingleResourceAdapter extends AbstractAdapter {
         JerseyRequest<ClientFile> request = prepareUploadFileRequest();
         return request.post(form);
     }
+	
+	public OperationResult<ClientFile> updateFile(File fileContent,
+                                                  ClientFile.FileType fileType,
+                                                  String label,
+                                                  String description) {
+        FormDataMultiPart form = prepareUploadForm(fileContent, fileType, label, description);
+        JerseyRequest<ClientFile> request = prepareUploadFileRequest();
+        return request.put(form);
+    }
 
     public <R> RequestExecution asyncUploadFile(final File fileContent,
                                                  final ClientFile.FileType fileType,
